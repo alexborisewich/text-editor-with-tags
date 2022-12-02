@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { Header } from 'components';
+import { Header, Main } from 'components';
 
 const Layout: React.FC = () => (
   <>
     <Header />
-    {/* <Main />
-    <Footer /> */}
+    <Main />
+    {/* <Footer /> */}
   </>
 );
 
