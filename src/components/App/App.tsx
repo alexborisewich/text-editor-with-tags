@@ -1,5 +1,7 @@
 import React from 'react';
 
-const App: React.FC = () => null;
+import { Layout } from 'components';
+
+const App: React.FC = () => <Layout />;
 
 export default App;
