@@ -7,10 +7,12 @@ const appSlice = createSlice({
   initialState,
   reducers: {
     setModalOpen: (state, action: PayloadAction<boolean>) => void (state.isModalOpen = action.payload),
-    addNote: (state, action: PayloadAction<string>) => void state.notes.push(action.payload),
-    addTag: (state, action: PayloadAction<string>) => void state.tags.push(action.payload),
+    addNote: ({ notes }, action: PayloadAction<string>) => void notes.push(action.payload),
+    addTag: ({ tags }, action: PayloadAction<string>) => void tags.push(action.payload),
+    deleteNote: ({ notes }, action: PayloadAction<string>) => void notes.splice(notes.indexOf(action.payload), 1),
+    deleteTag: ({ tags }, action: PayloadAction<string>) => void tags.splice(tags.indexOf(action.payload), 1),
   },
 });
 
 export default appSlice.reducer;
-export const { setModalOpen, addNote, addTag } = appSlice.actions;
+export const { setModalOpen, addNote, addTag, deleteNote, deleteTag } = appSlice.actions;
