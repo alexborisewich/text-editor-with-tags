@@ -3,12 +3,19 @@ import ReactModal from 'react-modal';
 
 import { types } from '.';
 
+import { useAppDispatch, useAppSelector } from 'hooks';
+import { setModalOpen } from 'store';
+
 const ModalWindow = ({ children }: types.ModalWindowProps) => {
+  const { isModalOpen } = useAppSelector((state) => state.app);
+  const dispatch = useAppDispatch();
   return (
     <ReactModal
-      isOpen={false}
+      isOpen={isModalOpen}
       shouldCloseOnOverlayClick
-      onRequestClose={() => {}}
+      onRequestClose={() => {
+        dispatch(setModalOpen(false));
+      }}
       closeTimeoutMS={300}
       style={{
         overlay: {
