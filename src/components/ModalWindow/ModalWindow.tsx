@@ -2,11 +2,12 @@ import React from 'react';
 import ReactModal from 'react-modal';
 
 import { types } from '.';
+import './ModalWindow.scss';
 
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { setModalOpen } from 'store';
 
-const ModalWindow = ({ children }: types.ModalWindowProps) => {
+const ModalWindow = ({ dataTestId, children }: types.ModalWindowProps) => {
   const { isModalOpen } = useAppSelector((state) => state.app);
   const dispatch = useAppDispatch();
   return (
@@ -17,6 +18,11 @@ const ModalWindow = ({ children }: types.ModalWindowProps) => {
         dispatch(setModalOpen(false));
       }}
       closeTimeoutMS={300}
+      contentLabel='Add new note'
+      shouldCloseOnEsc
+      shouldFocusAfterRender
+      shouldReturnFocusAfterClose
+      testId={dataTestId}
       style={{
         overlay: {
           display: 'flex',
