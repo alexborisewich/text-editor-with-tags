@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 
 import { s, types } from '.';
 
-import { ModalWindow } from 'components';
+import { ModalWindow, NoteForm } from 'components';
 
 const Main = ({ dataTestId }: types.MainProps) => {
   useEffect(() => ReactModal.setAppElement('#root'));
@@ -12,9 +12,7 @@ const Main = ({ dataTestId }: types.MainProps) => {
     <main className={s.main} data-testid={dataTestId}>
       <Outlet />
       <ModalWindow>
-        {
-          // <Form />
-        }
+        <NoteForm />
       </ModalWindow>
     </main>
   );

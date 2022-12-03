@@ -33,7 +33,7 @@ const ModalWindow = ({ dataTestId, children }: types.ModalWindowProps) => {
         content: {
           borderRadius: '20px',
           position: 'static',
-          padding: '0',
+          padding: '20px',
         },
       }}
     >

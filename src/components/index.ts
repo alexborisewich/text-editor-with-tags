@@ -7,6 +7,7 @@ import Main from './layout/Main';
 import Logo from './Logo';
 import ModalWindow from './ModalWindow';
 import NavBar from './NavBar';
+import NoteForm from './NoteForm';
 import ErrorPage from './pages/ErrorPage';
 import NotesPage from './pages/NotesPage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -31,4 +32,5 @@ export {
   Button,
   WelcomeSVG,
   ModalWindow,
+  NoteForm,
 };
