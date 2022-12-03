@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 import { s, types } from '.';
 
@@ -18,7 +19,7 @@ const NoteForm = ({ dataTestId }: types.NoteFormProps) => {
         note &&
         getUniqueTagsFromNote(note, tags).forEach((newTag) => {
           dispatch(addTag(newTag));
-          console.warn(`Tag ${newTag} has been detected and successfully added!`);
+          toast.success(`Tag ${newTag} has been detected and successfully added!`);
         })
     );
     return () => watchNoteValue.unsubscribe();
@@ -27,11 +28,11 @@ const NoteForm = ({ dataTestId }: types.NoteFormProps) => {
   const handleFormSubmit = handleSubmit(({ note }) => {
     const newNote = note.trim();
     if (notes.includes(newNote)) {
-      console.warn(`Note ${newNote} already exist!`);
+      toast.error(`Note ${newNote} already exist!`);
       return;
     }
     dispatch(addNote(newNote));
-    console.warn(`Note ${newNote} has been successfully added!`);
+    toast.success(`Note ${newNote} has been successfully added!`);
     reset();
   });
 
