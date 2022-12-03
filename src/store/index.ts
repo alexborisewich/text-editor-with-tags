@@ -1,2 +1,2 @@
 export { default } from './store';
-export { setModalOpen } from './appSlice';
+export { setModalOpen, addNote, addTag } from './appSlice';
