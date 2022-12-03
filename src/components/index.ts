@@ -12,6 +12,8 @@ import NotFoundPage from './pages/NotFoundPage';
 import TagsPage from './pages/TagsPage';
 import WelcomePage from './pages/WelcomePage';
 
+import { ReactComponent as WelcomeSVG } from 'assets/svg/welcome.svg';
+
 export {
   App,
   Layout,
@@ -26,4 +28,5 @@ export {
   Logo,
   NavBar,
   Button,
+  WelcomeSVG,
 };
