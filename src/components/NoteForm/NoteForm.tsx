@@ -7,19 +7,19 @@ import { s, types } from '.';
 import { List } from 'components';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { addNote, addTag } from 'store';
-import { formatNote, getUniqueTagsFromNote, noteValidation, onPromiseHandler } from 'utils';
+import { formatNote, formatTag, getUniqueTagsFromNote, noteValidation, onPromiseHandler } from 'utils';
 
 const NoteForm = ({ dataTestId }: types.NoteFormProps) => {
   const { tags, notes } = useAppSelector((state) => state.app);
   const dispatch = useAppDispatch();
-  const { control, handleSubmit, watch, reset } = useForm<{ note: string }>();
+  const { control, handleSubmit, watch, reset, getValues, setValue } = useForm<{ note: string }>();
 
   useEffect(() => {
     const watchNoteValue = watch(
       ({ note }) =>
         note &&
         getUniqueTagsFromNote(note, tags).forEach((newTag) => {
-          dispatch(addTag(newTag));
+          dispatch(addTag(formatTag(newTag)));
           toast.success(`Tag ${newTag} has been detected and successfully added!`);
         })
     );
@@ -36,6 +36,11 @@ const NoteForm = ({ dataTestId }: types.NoteFormProps) => {
     toast.success(`Note ${newNote} has been successfully added!`);
     reset();
   });
+
+  const handleOnClickTag = (tag: string) => {
+    const { note } = getValues();
+    setValue('note', note.concat(` #${tag}`));
+  };
 
   return (
     <form className={s.form} data-testid={dataTestId} onSubmit={onPromiseHandler(handleFormSubmit)}>
@@ -60,7 +65,7 @@ const NoteForm = ({ dataTestId }: types.NoteFormProps) => {
       />
       <input className={s.submit} type='submit' value='Add' />
       <input className={s.submit} type='reset' value='Clear' onClick={() => reset()} />
-      <List type='tags' data={tags} />
+      <List type='tags' data={tags} onClickTag={handleOnClickTag} />
     </form>
   );
 };

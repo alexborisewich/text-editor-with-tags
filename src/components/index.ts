@@ -1,5 +1,6 @@
 import App from './App';
 import Button from './Button';
+import HighlightText from './HighlightText';
 import Footer from './layout/Footer';
 import Header from './layout/Header';
 import Layout from './layout/Layout';
@@ -15,6 +16,7 @@ import NotesPage from './pages/NotesPage';
 import NotFoundPage from './pages/NotFoundPage';
 import TagsPage from './pages/TagsPage';
 import WelcomePage from './pages/WelcomePage';
+import SearchBar from './SearchBar';
 import TagItem from './TagItem';
 
 import { ReactComponent as WelcomeSVG } from 'assets/svg/welcome.svg';
@@ -39,4 +41,6 @@ export {
   List,
   NoteItem,
   TagItem,
+  SearchBar,
+  HighlightText,
 };

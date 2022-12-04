@@ -1,4 +1,5 @@
 export type TagItemProps = {
   dataTestId?: string;
-  text: string;
+  tag: string;
+  onClickTag?: (arg: string) => void;
 };

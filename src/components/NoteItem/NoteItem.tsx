@@ -3,20 +3,20 @@ import { toast } from 'react-toastify';
 
 import { s, types } from '.';
 
-import { Button } from 'components';
+import { Button, HighlightText } from 'components';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { addTag, deleteNote, editNote } from 'store';
-import { formatNote, getUniqueTagsFromNote } from 'utils';
+import { formatNote, formatTag, getUniqueTagsFromNote } from 'utils';
 
-const NoteItem = ({ dataTestId, text }: types.NoteItemProps) => {
+const NoteItem = ({ dataTestId, note }: types.NoteItemProps) => {
   const { tags } = useAppSelector((state) => state.app);
-  const [value, setValue] = useState(text);
+  const [value, setValue] = useState(note);
   const [isEdit, toggleEdit] = useState(false);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     getUniqueTagsFromNote(value, tags).forEach((newTag) => {
-      dispatch(addTag(newTag));
+      dispatch(addTag(formatTag(newTag)));
       toast.success(`Tag ${newTag} has been detected and successfully added!`);
     });
   }, [dispatch, tags, value]);
@@ -26,17 +26,17 @@ const NoteItem = ({ dataTestId, text }: types.NoteItemProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setValue(e.currentTarget.value);
 
   const handleDelete = () => {
-    dispatch(deleteNote(text));
-    toast.success(`Note ${text} has been deleted.`);
+    dispatch(deleteNote(note));
+    toast.success(`Note ${note} has been deleted.`);
   };
 
   const handleCancel = () => {
-    setValue(text);
+    setValue(note);
     toggleEdit(!isEdit);
   };
 
   const handleSave = () => {
-    dispatch(editNote({ oldValue: text, newValue: formatNote(value) }));
+    dispatch(editNote({ oldValue: note, newValue: formatNote(value) }));
     toggleEdit(!isEdit);
     toast.success(`Note has been updated.`);
   };
@@ -45,15 +45,25 @@ const NoteItem = ({ dataTestId, text }: types.NoteItemProps) => {
     <div className={s.container} data-testid={dataTestId}>
       <label className={s.item_label}>
         {isEdit ? (
-          <input type='text' className={s.item_input} autoFocus value={value} onChange={handleChange} />
+          <>
+            <input
+              type='text'
+              style={{ display: 'none' }}
+              className={s.item_input}
+              autoFocus
+              value={value}
+              onChange={handleChange}
+            />
+            <HighlightText text={note} tags={tags} />
+          </>
         ) : (
-          <span className={s.item_text}>{text}</span>
+          <span className={s.label_text}>{value}</span>
         )}
       </label>
       <div className={s.btns_wrapper}>
         {isEdit ? (
           <>
-            <Button text='Save' onClick={handleSave} />
+            <Button text='Save' onClick={handleSave} disabled={note === value} />
             <Button text='Cancel' onClick={handleCancel} />
           </>
         ) : (

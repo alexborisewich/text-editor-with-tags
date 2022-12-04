@@ -7,7 +7,7 @@ afterEach(cleanup);
 
 describe('TagItem component', () => {
   it('renders component successfully', () => {
-    render(<TagItem text='test' dataTestId='test' />);
+    render(<TagItem tag='test' dataTestId='test' />);
     expect(screen.getByTestId(/test/i)).toBeInTheDocument();
   });
 });

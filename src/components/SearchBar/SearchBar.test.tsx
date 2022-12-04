@@ -1,13 +1,13 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import React from 'react';
 
-import NoteItem from '.';
+import SearchBar from '.';
 
 afterEach(cleanup);
 
-describe('NoteItem component', () => {
+describe('SearchBar component', () => {
   it('renders component successfully', () => {
-    render(<NoteItem note='test' dataTestId='test' />);
+    render(<SearchBar dataTestId='test' />);
     expect(screen.getByTestId(/test/i)).toBeInTheDocument();
   });
 });
