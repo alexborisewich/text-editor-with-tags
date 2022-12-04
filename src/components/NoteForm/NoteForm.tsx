@@ -4,9 +4,10 @@ import { toast } from 'react-toastify';
 
 import { s, types } from '.';
 
+import { List } from 'components';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { addNote, addTag } from 'store';
-import { getUniqueTagsFromNote, noteValidation, onPromiseHandler } from 'utils';
+import { formatNote, getUniqueTagsFromNote, noteValidation, onPromiseHandler } from 'utils';
 
 const NoteForm = ({ dataTestId }: types.NoteFormProps) => {
   const { tags, notes } = useAppSelector((state) => state.app);
@@ -26,7 +27,7 @@ const NoteForm = ({ dataTestId }: types.NoteFormProps) => {
   }, [dispatch, tags, watch]);
 
   const handleFormSubmit = handleSubmit(({ note }) => {
-    const newNote = note.trim();
+    const newNote = formatNote(note);
     if (notes.includes(newNote)) {
       toast.error(`Note ${newNote} already exist!`);
       return;
@@ -59,11 +60,7 @@ const NoteForm = ({ dataTestId }: types.NoteFormProps) => {
       />
       <input className={s.submit} type='submit' value='Add' />
       <input className={s.submit} type='reset' value='Clear' onClick={() => reset()} />
-      {tags.map((tag) => (
-        <span className={s.tag} key={tag}>
-          {tag}
-        </span>
-      ))}
+      <List type='tags' data={tags} />
     </form>
   );
 };
