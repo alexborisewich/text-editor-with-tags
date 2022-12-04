@@ -11,8 +11,12 @@ const appSlice = createSlice({
     addTag: ({ tags }, action: PayloadAction<string>) => void tags.push(action.payload),
     deleteNote: ({ notes }, action: PayloadAction<string>) => void notes.splice(notes.indexOf(action.payload), 1),
     deleteTag: ({ tags }, action: PayloadAction<string>) => void tags.splice(tags.indexOf(action.payload), 1),
+    editNote: ({ notes }, action: PayloadAction<{ oldValue: string; newValue: string }>) => {
+      const { oldValue, newValue } = action.payload;
+      notes[notes.indexOf(oldValue)] = newValue;
+    },
   },
 });
 
 export default appSlice.reducer;
-export const { setModalOpen, addNote, addTag, deleteNote, deleteTag } = appSlice.actions;
+export const { setModalOpen, addNote, addTag, deleteNote, deleteTag, editNote } = appSlice.actions;
