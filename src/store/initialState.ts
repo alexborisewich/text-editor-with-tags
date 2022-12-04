@@ -4,4 +4,5 @@ export const initialState: IAppState = {
   isModalOpen: false,
   notes: [],
   tags: [],
+  searchQuery: '',
 };

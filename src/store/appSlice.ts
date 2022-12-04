@@ -15,8 +15,9 @@ const appSlice = createSlice({
       const { oldValue, newValue } = action.payload;
       notes[notes.indexOf(oldValue)] = newValue;
     },
+    setSearchQuery: (state, action: PayloadAction<string>) => void (state.searchQuery = action.payload),
   },
 });
 
 export default appSlice.reducer;
-export const { setModalOpen, addNote, addTag, deleteNote, deleteTag, editNote } = appSlice.actions;
+export const { setModalOpen, addNote, addTag, deleteNote, deleteTag, editNote, setSearchQuery } = appSlice.actions;
