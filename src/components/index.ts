@@ -14,7 +14,6 @@ import NoteItem from './NoteItem';
 import ErrorPage from './pages/ErrorPage';
 import NotesPage from './pages/NotesPage';
 import NotFoundPage from './pages/NotFoundPage';
-import TagsPage from './pages/TagsPage';
 import WelcomePage from './pages/WelcomePage';
 import SearchBar from './SearchBar';
 import TagItem from './TagItem';
@@ -29,7 +28,6 @@ export {
   Footer,
   WelcomePage,
   NotesPage,
-  TagsPage,
   NotFoundPage,
   ErrorPage,
   Logo,

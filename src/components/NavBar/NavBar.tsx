@@ -23,11 +23,6 @@ const NavBar = ({ dataTestId }: types.NavBarProps) => (
           My Notes
         </NavLink>
       </li>
-      <li className={s.item}>
-        <NavLink className={({ isActive }) => cn(s.link, { [s.active as string]: isActive })} to={ROUTER_PATHS.tags}>
-          My Tags
-        </NavLink>
-      </li>
     </ul>
   </nav>
 );

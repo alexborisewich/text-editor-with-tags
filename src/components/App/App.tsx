@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { Layout, NotesPage, TagsPage, WelcomePage } from 'components';
+import { Layout, NotesPage, WelcomePage } from 'components';
 import { ROUTER_PATHS } from 'settings';
 import store from 'store';
 
@@ -16,12 +16,11 @@ const App: React.FC = () => (
         <Route element={<Layout />}>
           <Route path={ROUTER_PATHS.welcome} element={<WelcomePage />} />
           <Route path={ROUTER_PATHS.notes} element={<NotesPage />} />
-          <Route path={ROUTER_PATHS.tags} element={<TagsPage />} />
         </Route>
         <Route
           path={ROUTER_PATHS.notFound}
           element={
-            <React.Suspense fallback='Loading'>
+            <React.Suspense fallback='Loading...'>
               <NotFoundPage />
             </React.Suspense>
           }
@@ -29,7 +28,7 @@ const App: React.FC = () => (
         <Route
           path={ROUTER_PATHS.error}
           element={
-            <React.Suspense fallback='Loading'>
+            <React.Suspense fallback='Loading...'>
               <ErrorPage />
             </React.Suspense>
           }
