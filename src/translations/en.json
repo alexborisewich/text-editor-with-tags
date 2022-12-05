@@ -6,6 +6,9 @@
       "Notes": "My Notes"
     }
   },
+  "Footer": {
+    "Link": "Aliaksei Barysewich"
+  },
   "Buttons": {
     "NewNote": "Add new note",
     "Start": "Getting started!",
@@ -22,6 +25,10 @@
   },
   "NotesPage": {
     "Placeholder": "Search by note text..."
+  },
+  "ErrorPage": {
+    "Title": "Error",
+    "Text": "Oops... Something went wrong."
   },
   "NoteForm": {
     "Title": "Add new note:",
