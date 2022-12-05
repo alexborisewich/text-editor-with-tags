@@ -1,5 +1,6 @@
 import App from './App';
 import Button from './Button';
+import ErrorBoundary from './ErrorBoundary';
 import HighlightText from './HighlightText';
 import Footer from './layout/Footer';
 import Header from './layout/Header';
@@ -41,4 +42,5 @@ export {
   TagItem,
   SearchBar,
   HighlightText,
+  ErrorBoundary,
 };
