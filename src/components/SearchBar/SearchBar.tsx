@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { s, types } from '.';
 
@@ -8,6 +9,7 @@ import { setSearchQuery } from 'store';
 const SearchBar = ({ dataTestId }: types.SearchBarProps) => {
   const { searchQuery } = useAppSelector((state) => state.app);
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(setSearchQuery(e.currentTarget.value));
   return (
     <div className={s.container} data-testid={dataTestId}>
@@ -16,7 +18,7 @@ const SearchBar = ({ dataTestId }: types.SearchBarProps) => {
           className={s.input}
           value={searchQuery}
           onInput={handleInput}
-          placeholder='Search by note text...'
+          placeholder={`${t('NotesPage.Placeholder')}`}
           type='search'
         />
       </form>

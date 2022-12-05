@@ -1,0 +1,40 @@
+{
+  "Header": {
+    "Logo": "Text Editor",
+    "Menu": {
+      "Welcome": "Go to Main",
+      "Notes": "My Notes"
+    }
+  },
+  "Buttons": {
+    "NewNote": "Add new note",
+    "Start": "Getting started!",
+    "Add": "Add",
+    "Clear": "Clear",
+    "Edit": "Edit",
+    "Delete": "Delete",
+    "Save": "Save",
+    "Cancel": "Cancel"
+  },
+  "WelcomePage": {
+    "Title": "Welcome to Text Editor!",
+    "Text": "Quickly capture what's on your mind. Easily find it later in search. It's easy to capture a thought or list for yourself!"
+  },
+  "NotesPage": {
+    "Placeholder": "Search by note text..."
+  },
+  "NoteForm": {
+    "Title": "Add new note:",
+    "Help": "For automatically adding tags use '#' character and insert 'space' after finishing entering one or more tags.",
+    "Placeholder": "Enter your note here...",
+    "ValidationError": "Note text should includes at least 2 symbols"
+  },
+  "Messages": {
+    "AddTagSuccess": "Tag has been detected and successfully added!",
+    "DeleteTagSuccess": "Tag has been deleted.",
+    "AddNoteError": "Note already exist!",
+    "AddNoteSuccess": "Note has been successfully added!",
+    "DeleteNoteSuccess": "Note has been deleted.",
+    "UpdateNoteSuccess": "Note has been updated."
+  }
+}

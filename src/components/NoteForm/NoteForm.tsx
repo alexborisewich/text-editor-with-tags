@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
 import { s, types } from '.';
@@ -13,6 +14,7 @@ const NoteForm = ({ dataTestId }: types.NoteFormProps) => {
   const { tags, notes } = useAppSelector((state) => state.app);
   const dispatch = useAppDispatch();
   const { control, handleSubmit, watch, reset, getValues, setValue } = useForm<{ note: string }>();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const watchNoteValue = watch(
@@ -20,20 +22,20 @@ const NoteForm = ({ dataTestId }: types.NoteFormProps) => {
         note &&
         getUniqueTagsFromNote(note, tags).forEach((newTag) => {
           dispatch(addTag(formatTag(newTag)));
-          toast.success(`Tag ${newTag} has been detected and successfully added!`);
+          toast.success(t('Messages.AddTagSuccsess'));
         })
     );
     return () => watchNoteValue.unsubscribe();
-  }, [dispatch, tags, watch]);
+  }, [dispatch, t, tags, watch]);
 
   const handleFormSubmit = handleSubmit(({ note }) => {
     const newNote = formatNote(note);
     if (notes.includes(newNote)) {
-      toast.error(`Note ${newNote} already exist!`);
+      toast.error(t('Messages.AddNoteError'));
       return;
     }
     dispatch(addNote(newNote));
-    toast.success(`Note ${newNote} has been successfully added!`);
+    toast.success(t('Messages.AddNoteSuccsess'));
     reset();
   });
 
@@ -52,19 +54,16 @@ const NoteForm = ({ dataTestId }: types.NoteFormProps) => {
         render={({ field, fieldState: { error } }) => (
           <div className={s.wrapper}>
             <label className={s.label}>
-              <h4 className={s.label_text}>Add new note:</h4>
-              <p className={s.help}>
-                For automatically adding tags use '#' character and insert 'space' after finishing entering one or more
-                tags. If you already have your notes and tags, you can edit, search and sort them on special pages.
-              </p>
-              <textarea className={s.textarea} placeholder='Input your note here...' {...field} />
+              <h4 className={s.label_text}>{t('NoteForm.Title')}</h4>
+              <p className={s.help}>{t('NoteForm.Help')}</p>
+              <textarea className={s.textarea} placeholder={`${t('NoteForm.Placeholder')}`} {...field} />
             </label>
             {error && <span className={s.error_message}>{error.message}</span>}
           </div>
         )}
       />
-      <input className={s.submit} type='submit' value='Add' />
-      <input className={s.submit} type='reset' value='Clear' onClick={() => reset()} />
+      <input className={s.submit} type='submit' value={`${t('Buttons.Add')}`} />
+      <input className={s.submit} type='reset' value={`${t('Buttons.Clear')}`} onClick={() => reset()} />
       <List type='tags' data={tags} onClickTag={handleOnClickTag} />
     </form>
   );

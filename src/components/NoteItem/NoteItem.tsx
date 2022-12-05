@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
 import { s, types } from '.';
@@ -13,13 +14,14 @@ const NoteItem = ({ dataTestId, note }: types.NoteItemProps) => {
   const [value, setValue] = useState(note);
   const [isEdit, toggleEdit] = useState(false);
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
 
   useEffect(() => {
     getUniqueTagsFromNote(value, tags).forEach((newTag) => {
       dispatch(addTag(formatTag(newTag)));
-      toast.success(`Tag ${newTag} has been detected and successfully added!`);
+      toast.success(t('Messages.AddTagSuccess'));
     });
-  }, [dispatch, tags, value]);
+  }, [dispatch, t, tags, value]);
 
   const handleEdit = () => toggleEdit(!isEdit);
 
@@ -27,7 +29,7 @@ const NoteItem = ({ dataTestId, note }: types.NoteItemProps) => {
 
   const handleDelete = () => {
     dispatch(deleteNote(note));
-    toast.success(`Note ${note} has been deleted.`);
+    toast.success(t('Messages.DeleteTagSuccess'));
   };
 
   const handleCancel = () => {
@@ -38,7 +40,7 @@ const NoteItem = ({ dataTestId, note }: types.NoteItemProps) => {
   const handleSave = () => {
     dispatch(editNote({ oldValue: note, newValue: formatNote(value) }));
     toggleEdit(!isEdit);
-    toast.success(`Note has been updated.`);
+    toast.success(t('UpdateNoteSuccess'));
   };
 
   return (
@@ -46,14 +48,7 @@ const NoteItem = ({ dataTestId, note }: types.NoteItemProps) => {
       <label className={s.item_label}>
         {isEdit ? (
           <>
-            <input
-              type='text'
-              style={{ display: 'none' }}
-              className={s.item_input}
-              autoFocus
-              value={value}
-              onChange={handleChange}
-            />
+            <input type='text' className={s.item_input} autoFocus value={value} onChange={handleChange} />
             <HighlightText text={note} tags={tags} />
           </>
         ) : (
@@ -63,13 +58,13 @@ const NoteItem = ({ dataTestId, note }: types.NoteItemProps) => {
       <div className={s.btns_wrapper}>
         {isEdit ? (
           <>
-            <Button text='Save' onClick={handleSave} disabled={note === value} />
-            <Button text='Cancel' onClick={handleCancel} />
+            <Button text={t('Buttons.Save')} onClick={handleSave} disabled={note === value} />
+            <Button text={t('Buttons.Cancel')} onClick={handleCancel} />
           </>
         ) : (
           <>
-            <Button text='Edit' onClick={handleEdit} />
-            <Button text='Delete' onClick={handleDelete} />
+            <Button text={t('Buttons.Edit')} onClick={handleEdit} />
+            <Button text={t('Buttons.Delete')} onClick={handleDelete} />
           </>
         )}
       </div>
