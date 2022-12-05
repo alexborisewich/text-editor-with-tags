@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { s, types } from '.';
 
@@ -13,13 +14,25 @@ const NotesPage = ({ dataTestId }: types.NotesPageProps) => {
     () => (searchQuery === '' ? notes : notes.filter((note) => note.includes(searchQuery))),
     [notes, searchQuery]
   );
+  const { t } = useTranslation();
   const handleOnClickTag = (tag: string) => void dispatch(setSearchQuery(tag));
 
   return (
     <section className={s.container} data-testid={dataTestId}>
-      <SearchBar />
-      <List type='tags' data={tags} onClickTag={handleOnClickTag} />
-      <List type='notes' data={filteredNotes} />
+      <h2 className={s.title}>{t('NotesPage.Title')}</h2>
+      {notes.length ? (
+        <>
+          <SearchBar />
+          <List type='tags' data={tags} onClickTag={handleOnClickTag} />
+          {filteredNotes.length ? (
+            <List type='notes' data={filteredNotes} />
+          ) : (
+            <p className={s.message}>{t('NotesPage.NotFound')}</p>
+          )}
+        </>
+      ) : (
+        <p className={s.message}>{t('NotesPage.NotHave')}</p>
+      )}
     </section>
   );
 };

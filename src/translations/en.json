@@ -24,11 +24,20 @@
     "Text": "Quickly capture what's on your mind. Easily find it later in search. It's easy to capture a thought or list for yourself!"
   },
   "NotesPage": {
-    "Placeholder": "Search by note text..."
+    "Title": "My notes",
+    "Placeholder": "Search by note text...",
+    "NotHave": "You don't have any notes yet.",
+    "NotFound": "Nothing was found"
   },
   "ErrorPage": {
     "Title": "Error",
-    "Text": "Oops... Something went wrong."
+    "Text": "Oops... Something went wrong.",
+    "Link": "Go to Main"
+  },
+  "NotFoundPage": {
+    "Title": "404",
+    "Text": "Oops... Page not found.",
+    "Link": "Go to Main"
   },
   "NoteForm": {
     "Title": "Add new note:",
