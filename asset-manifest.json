@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/text-editor-with-tags/static/css/main.99af67a7.css",
+    "main.js": "/text-editor-with-tags/static/js/main.290f15a1.js",
+    "static/media/welcome.svg": "/text-editor-with-tags/static/media/welcome.f4507d4ce60ed210256201159dc28845.svg",
+    "index.html": "/text-editor-with-tags/index.html",
+    "main.99af67a7.css.map": "/text-editor-with-tags/static/css/main.99af67a7.css.map",
+    "main.290f15a1.js.map": "/text-editor-with-tags/static/js/main.290f15a1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.99af67a7.css",
+    "static/js/main.290f15a1.js"
+  ]
+}
